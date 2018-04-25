@@ -17,18 +17,38 @@ public class EnemyController : MonoBehaviour {
     public float minY;
     public float maxY;
 
-	// Use this for initialization
-	void Start () {
+    List<Vector3> collisionPoints;
+
+    // Use this for initialization
+    void Start () {
         waitTime = startWaitTime;
         avoidingMultipler = 0;
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        collisionPoints = DepthView.circlePositions;
+        if (DepthView.circlePositions != null)
+        {
+            foreach(var p in collisionPoints)
+            {
+                if(p.x > transform.position.x -200 && p.x < transform.position.x + 200 
+                    && p.y > transform.position.y - 200 && p.y < transform.position.y + 200)
+                {
+                    Destroy(this.gameObject);
+                }
+
+            }
+
+        }
+
         if (!avoiding)
         {
+
+            if(transform)
             transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
             Vector2 direction = moveSpots.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
@@ -72,7 +92,7 @@ public class EnemyController : MonoBehaviour {
         RaycastHit2D frontSensor = Physics2D.Raycast(frontSensorPos, (frontSensorAim - frontSensorPos).normalized, 3500);
         if (frontSensor.collider != null && frontSensor.collider.CompareTag("Coll"))
         {
-            Debug.DrawLine(frontSensorPos, frontSensor.point);
+            //Debug.DrawLine(frontSensorPos, frontSensor.point);
             //moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             avoiding = true;
             avoidingMultipler += 12000f;
@@ -89,7 +109,7 @@ public class EnemyController : MonoBehaviour {
         //Front-right
         if (rightSensor.collider != null && rightSensor.collider.CompareTag("Coll"))
         {
-            Debug.DrawLine(rightSensorPos, rightSensor.point);
+            //Debug.DrawLine(rightSensorPos, rightSensor.point);
             avoiding = true;
             avoidingMultipler += 6000f;
             
@@ -97,11 +117,11 @@ public class EnemyController : MonoBehaviour {
         //Front-left
         if (leftSensor.collider != null && leftSensor.collider.CompareTag("Coll"))
         {
-            Debug.DrawLine(leftSensorPos, leftSensor.point);
+            //Debug.DrawLine(leftSensorPos, leftSensor.point);
             avoiding = true;
             avoidingMultipler += 6000f;
         }
-        
+
         if (avoiding)
         {
             Vector2 direction = moveSpots.position - transform.position;

@@ -43,7 +43,6 @@ public class turtle_blue_animation : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
             Vector2 direction = moveSpots.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-            Debug.Log(transform.rotation.z);
             if (angle >= 45 && angle < 135)
             {
                 

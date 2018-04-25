@@ -26,12 +26,20 @@ public class DepthView : MonoBehaviour
 
     private Renderer rend;
 
+    private SpriteRenderer srend;
+
+    public static List<Vector3> circlePositions;
+
     // Use this for initialization
     void Start()
     {
         DepthActive = true  ;
         averageDepth = 0;
         ShowAndStart();
+        rend = GetComponent<Renderer>();
+        srend = GetComponent<SpriteRenderer>();
+        circlePositions = new List<Vector3>();
+        
     }
 
 
@@ -88,9 +96,9 @@ public class DepthView : MonoBehaviour
                         detectionFrame[index / 4 % 512, index / 4 / 512] = 0;
                     }
                 }
-                texture.LoadRawTextureData(data);
-                texture.Apply();
-                depthPlane.GetComponent<MeshRenderer>().material.mainTexture = texture;
+                //texture.LoadRawTextureData(data);
+                //texture.Apply();
+                //depthPlane.GetComponent<MeshRenderer>().material.mainTexture = texture;
                 detectionFrame = FloodFill(detectionFrame);
                 GameObject[] detections;
                 detections = GameObject.FindGameObjectsWithTag("detection");
@@ -108,32 +116,39 @@ public class DepthView : MonoBehaviour
                             {
                                 bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
                                 bodyPos.tag = "detection";
+                                bodyPos.layer = 9;
+                                bodyPos.GetComponent<Renderer>().material.color = Color.red;
+                                //bodyPos.GetComponent<MeshRenderer>().enabled = false;
                                 double xPercent = (double)l / 513.0;
                                 float xFloat = (float)xPercent * 28542 * 2;
                                 double yPercent = (double)k / 425.0;
                                 float yFloat = (float)yPercent * -16309*2;
-                                bodyPos.transform.localScale += new Vector3(500f, 500f, 0);
+                                bodyPos.transform.localScale += new Vector3(800f, 800f, 3f);
                                 bodyPos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
-                                l += 3;
+                                l += 10;
                             }
                         }
                         else if (detectionFrame[l, k] == 0)
                         {
                             if (true)
                             {
+                                
                                 circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                                circlePos.GetComponent<Renderer>().material.color = Color.blue;
+                                //circlePos.GetComponent<MeshRenderer>().enabled = false;
                                 circlePos.tag = "detection";
                                 double xPercent = (double)l / 513.0;
                                 float xFloat = (float)xPercent * 28542 * 2;
                                 double yPercent = (double)k / 425.0;
                                 float yFloat = (float)yPercent * -16309 * 2;
-                                circlePos.transform.localScale += new Vector3(500f, 500f, 0);
+                                circlePos.transform.localScale += new Vector3(500f, 500f, 3);
                                 circlePos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
-                                l += 3;
+                                circlePositions.Add(new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0));
+                                l += 10;
                             }
                         }
                     }
-                    k += 3;
+                    k += 10;
                 }
                 /**
                 bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
