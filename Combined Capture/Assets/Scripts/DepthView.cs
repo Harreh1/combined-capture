@@ -109,11 +109,11 @@ public class DepthView : MonoBehaviour
                                 bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
                                 bodyPos.tag = "detection";
                                 double xPercent = (double)l / 513.0;
-                                float xFloat = (float)xPercent * 11.8f;
+                                float xFloat = (float)xPercent * 28542 * 2;
                                 double yPercent = (double)k / 425.0;
-                                float yFloat = (float)yPercent * 9f;
-                                bodyPos.transform.localScale -= new Vector3(0.75f, 0.75f, 0);
-                                bodyPos.transform.position = new Vector3(-1 * (-5.9f + xFloat), -1 * (-4.5f + yFloat), 0);
+                                float yFloat = (float)yPercent * -16309*2;
+                                bodyPos.transform.localScale += new Vector3(500f, 500f, 0);
+                                bodyPos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
                                 l += 3;
                             }
                         }
@@ -124,11 +124,11 @@ public class DepthView : MonoBehaviour
                                 circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                                 circlePos.tag = "detection";
                                 double xPercent = (double)l / 513.0;
-                                float xFloat = (float)xPercent * 11.8f;
+                                float xFloat = (float)xPercent * 28542 * 2;
                                 double yPercent = (double)k / 425.0;
-                                float yFloat = (float)yPercent * 9f;
-                                circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
-                                circlePos.transform.position = new Vector3(-1 * (-5.9f + xFloat), -1 * (-4.5f + yFloat), 0);
+                                float yFloat = (float)yPercent * -16309 * 2;
+                                circlePos.transform.localScale += new Vector3(500f, 500f, 0);
+                                circlePos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
                                 l += 3;
                             }
                         }
