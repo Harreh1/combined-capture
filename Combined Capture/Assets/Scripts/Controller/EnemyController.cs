@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyController : MonoBehaviour {
 
@@ -38,7 +40,7 @@ public class EnemyController : MonoBehaviour {
                 if(p.x > transform.position.x -200 && p.x < transform.position.x + 200 
                     && p.y > transform.position.y - 200 && p.y < transform.position.y + 200)
                 {
-                    Destroy(this.gameObject);
+                    Destroy(this.gameObject);                   
                 }
 
             }
@@ -47,7 +49,6 @@ public class EnemyController : MonoBehaviour {
 
         if (!avoiding)
         {
-
             if(transform)
             transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
             Vector2 direction = moveSpots.position - transform.position;
