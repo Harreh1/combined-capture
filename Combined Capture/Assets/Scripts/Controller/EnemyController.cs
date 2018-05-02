@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
@@ -19,6 +20,11 @@ public class EnemyController : MonoBehaviour {
 
     List<Vector3> collisionPoints;
 
+    public static bool isCaptured;
+
+    public static string animalName;
+
+
     // Use this for initialization
     void Start () {
         waitTime = startWaitTime;
@@ -29,7 +35,7 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        isCaptured = false;
         collisionPoints = DepthView.circlePositions;
         if (DepthView.circlePositions != null)
         {
@@ -38,6 +44,8 @@ public class EnemyController : MonoBehaviour {
                 if(p.x > transform.position.x -200 && p.x < transform.position.x + 200 
                     && p.y > transform.position.y - 200 && p.y < transform.position.y + 200)
                 {
+                    animalName = this.name;
+                    isCaptured = true;
                     Destroy(this.gameObject);
                 }
 
@@ -137,6 +145,10 @@ public class EnemyController : MonoBehaviour {
 
     }
 
+    public bool getCapturedStatus()
+    {
+        return isCaptured;
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
