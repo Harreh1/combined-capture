@@ -100,6 +100,7 @@ public class DepthView : MonoBehaviour
                 //texture.Apply();
                 //depthPlane.GetComponent<MeshRenderer>().material.mainTexture = texture;
                 detectionFrame = FloodFill(detectionFrame);
+                
                 GameObject[] detections;
                 detections = GameObject.FindGameObjectsWithTag("detection");
                 foreach (GameObject d in detections)
@@ -112,7 +113,7 @@ public class DepthView : MonoBehaviour
                     {
                         if (detectionFrame[l, k] == 1)
                         {
-                            if (true)
+                            if (false)
                             {
                                 bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
                                 bodyPos.tag = "detection";
@@ -131,33 +132,24 @@ public class DepthView : MonoBehaviour
                         else if (detectionFrame[l, k] == 0)
                         {
                             if (true)
-                            {
-                                
-                                circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                            {                               
+                                /**circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                                 circlePos.GetComponent<Renderer>().material.color = Color.blue;
                                 //circlePos.GetComponent<MeshRenderer>().enabled = false;
-                                circlePos.tag = "detection";
+                                circlePos.tag = "detection"; **/
                                 double xPercent = (double)l / 513.0;
                                 float xFloat = (float)xPercent * 28542 * 2;
                                 double yPercent = (double)k / 425.0;
                                 float yFloat = (float)yPercent * -16309 * 2;
-                                circlePos.transform.localScale += new Vector3(500f, 500f, 3);
-                                circlePos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
+                                //circlePos.transform.localScale += new Vector3(500f, 500f, 3);
+                                //circlePos.transform.position = new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0);
                                 circlePositions.Add(new Vector3(1 * (57250f - xFloat), 1 * (-500f + yFloat), 0));
-                                l += 10;
                             }
                         }
+                        l += 5;
                     }
-                    k += 10;
+                   k += 5;
                 }
-                /**
-                bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                bodyPos.transform.position = new Vector3(-5.9f, -4.5f, 0);
-                Light bodyLight = bodyPos.AddComponent<Light>();
-                bodyLight.color = Color.blue;
-                bodyLight.type = LightType.Point; **/
-
-
 
                 //bodyPos.transform.
                 // 512 x 424 dimensions
@@ -194,12 +186,14 @@ public class DepthView : MonoBehaviour
         }
     }
 
+    // Flood fill algorithm based from Karim Oumghars solution at https://simpledevcode.wordpress.com/2015/12/29/flood-fill-algorithm-using-c-net/
+
     private int[,] FloodFill(int[,] originalPixels)
     {
         Stack<Point> pixels = new Stack<Point>();
         int[,] newPixels = new int[originalPixels.GetLength(0), originalPixels.GetLength(1)];
         Point startingPos = new Point(-1, -1);
-        int[] visitedPoints;
+        
 
         for (int k = 0; k < originalPixels.GetLength(1); k++)
         {

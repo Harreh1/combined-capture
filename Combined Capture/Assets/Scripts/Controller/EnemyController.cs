@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour {
 
     List<Vector3> collisionPoints;
 
-    public static bool isCaptured;
+    public static bool isCaptured = false;
 
     public static string animalName;
 
@@ -35,7 +35,6 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        isCaptured = false;
         collisionPoints = DepthView.circlePositions;
         if (DepthView.circlePositions != null)
         {
@@ -51,7 +50,7 @@ public class EnemyController : MonoBehaviour {
 
             }
 
-        }
+        } 
 
         if (!avoiding)
         {
