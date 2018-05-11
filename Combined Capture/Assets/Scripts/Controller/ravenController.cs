@@ -35,13 +35,14 @@ public class ravenController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /**collisionPoints = DepthView.circlePositions;
-        if (DepthView.circlePositions != null)
+        
+        collisionPoints = DepthViewTest.circlePositions;
+        if (DepthViewTest.circlePositions != null)
         {
             foreach(var p in collisionPoints)
             {
-                if(p.x > transform.position.x -200 && p.x < transform.position.x + 200 
-                    && p.y > transform.position.y - 200 && p.y < transform.position.y + 200)
+                if(p.x > transform.position.x -0.1 && p.x < transform.position.x + 0.1
+                    && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
                     animalName = this.name;
                     isCaptured = true;
@@ -50,8 +51,7 @@ public class ravenController : MonoBehaviour {
 
             }
 
-        } **/
-
+        } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
