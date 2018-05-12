@@ -33,13 +33,12 @@ public class DepthViewTest : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        DepthActive = true  ;
+        DepthActive = true;
         averageDepth = 0;
         ShowAndStart();
         rend = GetComponent<Renderer>();
         srend = GetComponent<SpriteRenderer>();
-        circlePositions = new List<Vector3>();
-        
+        circlePositions = new List<Vector3>();       
     }
 
 
@@ -151,12 +150,13 @@ public class DepthViewTest : MonoBehaviour
                                 double yPercent = (double)k / 107.0;
                                 float yFloat = (float)yPercent * -17f;
                                 circlePos.transform.position = new Vector3(1 * (14.3f - xFloat), 1 * (8.2f + yFloat), 0);
+                                //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                                 circlePositions.Add(new Vector3(1 * (14.3f - xFloat), 1 * (8.2f + yFloat), 0));
                             }
                         }
-                        l += 1;
+                        l += 3;
                     }
-                   k += 1;
+                   k += 3;
                 }
 
                 //bodyPos.transform.
