@@ -45,7 +45,7 @@ public class DepthViewTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        circlePositions.Clear();
         if (DepthActive == true && reader != null)
         {
             var frame = reader.AcquireLatestFrame();
@@ -64,7 +64,7 @@ public class DepthViewTest : MonoBehaviour
                     //int[] modeValues = new int[217088];
                     foreach (var dp in rawData)
                     {
-                        byte intensity = (byte)(dp >> 8);
+                        byte intensity = (byte)(dp >> 4);
                         if (intensity != 0)
                         {
                             totalDepth += intensity;
@@ -75,14 +75,15 @@ public class DepthViewTest : MonoBehaviour
                     averageDepth = totalDepth / index;
                     Debug.Log("This should only appear once");         
                 }
-
+                
                 index = 0;
                 index2 = 0;
                 int[,] detectionFrame = new int[129, 107];
                 foreach (var dp in rawData)
                 {
-                    byte intensity = (byte)(dp >> 8);
-                    if (intensity < averageDepth)
+                    byte intensity = (byte)(dp >> 4);
+                    // 70 with 125cm difference
+                    if (intensity !=0 && intensity < 80)
                     {
                         /**
                         data[index++] = intensity;
@@ -91,7 +92,6 @@ public class DepthViewTest : MonoBehaviour
                         data[index++] = 255;
                         **/
                         detectionFrame[index2 / 4 % 128, index2 / 2048] = 1;
-                        index2++;
                     }
                     else
                     {
@@ -102,8 +102,8 @@ public class DepthViewTest : MonoBehaviour
                         data[index++] = 0;
                         **/
                         detectionFrame[index2 / 4 % 128, index2 / 2048] = 0;
-                        index2++;
                     }
+                    index2++;
                 }
                 //texture.LoadRawTextureData(data);
                 //texture.Apply();
@@ -140,23 +140,31 @@ public class DepthViewTest : MonoBehaviour
                         else if (detectionFrame[l, k] == 0)
                         {
                             if (true)
-                            {                               
-                                circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                                circlePos.GetComponent<Renderer>().material.color = Color.blue;
-                                //circlePos.GetComponent<MeshRenderer>().enabled = false;
-                                circlePos.tag = "detection";
+                            {
                                 double xPercent = (double)l / 129.0;
                                 float xFloat = (float)xPercent * 29.5f;
                                 double yPercent = (double)k / 107.0;
                                 float yFloat = (float)yPercent * -17f;
-                                circlePos.transform.position = new Vector3(1 * (14.3f - xFloat), 1 * (8.2f + yFloat), 0);
-                                //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                                circlePositions.Add(new Vector3(1 * (14.3f - xFloat), 1 * (8.2f + yFloat), 0));
+                                float xPos = 1 * (14.3f - xFloat);
+                                float yPos = 1 * (8.2f + yFloat);
+                                if (l % 3 == 0 && k % 3 == 0)
+                                {
+                                    circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                                    circlePos.GetComponent<Renderer>().material.color = Color.blue;
+                                    //circlePos.GetComponent<MeshRenderer>().enabled = false;
+                                    circlePos.tag = "detection";
+
+                                    circlePos.transform.position = new Vector3(xPos, yPos, 0);
+                                    //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                                }
+
+                                circlePositions.Add(new Vector3(xPos, yPos, 0));
+                                
                             }
                         }
-                        l += 3;
+                        l += 1;
                     }
-                   k += 3;
+                   k += 1;
                 }
 
                 //bodyPos.transform.
@@ -202,26 +210,27 @@ public class DepthViewTest : MonoBehaviour
         int[,] newPixels = new int[originalPixels.GetLength(0), originalPixels.GetLength(1)];
         Point startingPos = new Point(-1, -1);
         
-
-        for (int k = 0; k < originalPixels.GetLength(1); k++)
-        {
-            for (int l = 0; l < originalPixels.GetLength(0); l++)
-            {
-                if (originalPixels[l, k] == 0)
-                {
-                    startingPos = new Point(l, k);
-                }
-            }
-        }
-        if (startingPos.X != -1)
-        {
-            pixels.Push(startingPos);
-        }
+        pixels.Push(new Point(0, 0));
+        pixels.Push(new Point(0, 25));
+        pixels.Push(new Point(0, 50));
+        pixels.Push(new Point(0, 105));
+        pixels.Push(new Point(127, 0));
+        pixels.Push(new Point(127, 25));
+        pixels.Push(new Point(127, 50));
+        pixels.Push(new Point(127, 105));
+        pixels.Push(new Point(30, 0));
+        pixels.Push(new Point(60, 0));
+        pixels.Push(new Point(90, 0));
+        pixels.Push(new Point(120, 0));
+        pixels.Push(new Point(30, 105));
+        pixels.Push(new Point(60, 105));
+        pixels.Push(new Point(90, 105));
+        pixels.Push(new Point(90, 105));
         while (pixels.Count > 0)
         {
             Point a = pixels.Pop();
-            if (a.X < originalPixels.GetLength(0) && a.X > 0 &&
-                    a.Y < originalPixels.GetLength(1) && a.Y > 0)//make sure we stay within bounds
+            if (a.X < originalPixels.GetLength(0) && a.X >= 0 &&
+                    a.Y < originalPixels.GetLength(1) && a.Y >= 0)//make sure we stay within bounds
             {
 
                 if (originalPixels[a.X, a.Y] == 0)

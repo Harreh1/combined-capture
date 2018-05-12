@@ -12,17 +12,24 @@ public class ravenTextManager2 :MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        isCaptured = ravenController.isCaptured;
+        isCaptured = ravenCaptureDetector.isCaptured;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        isCaptured = ravenController.isCaptured;
+        isCaptured = ravenCaptureDetector.isCaptured;
         if (isCaptured == true)
         {
             text.text = "Raven Captured!";
-            Destroy(gameObject, 3f);
+            StartCoroutine(LateCall());
+            ravenCaptureDetector.isCaptured = false;
         }	
 	}
 
+    //after same sec Object to false
+    IEnumerator LateCall()
+    {
+        yield return new WaitForSeconds(2f);
+        text.text = "";
+    }
 }

@@ -12,6 +12,7 @@ public class ravenController : MonoBehaviour {
     private bool avoiding;
     private float avoidingMultipler;
 
+    public Transform[] moveSpotsArray;
     public Transform moveSpots;
     public float minX;
     public float maxX;
@@ -20,22 +21,21 @@ public class ravenController : MonoBehaviour {
 
     List<Vector3> collisionPoints;
 
-    public static bool isCaptured = false;
-
     public static string animalName;
 
 
     // Use this for initialization
     void Start () {
+        this.gameObject.SetActive(true);
         waitTime = startWaitTime;
         avoidingMultipler = 0;
+        moveSpots = moveSpotsArray[Random.Range(0, moveSpotsArray.Length-1)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
         collisionPoints = DepthViewTest.circlePositions;
         if (DepthViewTest.circlePositions != null)
         {
@@ -45,7 +45,7 @@ public class ravenController : MonoBehaviour {
                     && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
                     animalName = this.name;
-                    isCaptured = true;
+                    ravenCaptureDetector.isCaptured = true;
                     Destroy(this.gameObject);
                 }
 
@@ -65,10 +65,6 @@ public class ravenController : MonoBehaviour {
 
 	}
 
-    public bool getCapturedStatus()
-    {
-        return isCaptured;
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
