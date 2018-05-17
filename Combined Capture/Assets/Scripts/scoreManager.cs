@@ -35,7 +35,7 @@ public class scoreManager : MonoBehaviour {
         }
         if (timeCountDown.endTime == "0")
         {
-            SceneManager.LoadScene("EndScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("countdownFinished", LoadSceneMode.Single);
         }
         scoreTracker.score = score;
     }

@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/leveltwo.unity
     guid: 299d518f1d5acb34fb3aed1af8046735
   - enabled: 1
-    path: Assets/game over.unity
+    path: Assets/countdownFinished.unity
     guid: 6f1cd50ff9ae6334f875eeeb199cb317
+  - enabled: 1
+    path: Assets/game over.unity
+    guid: 5f25aaefe40d61c459feb0ea4858de10

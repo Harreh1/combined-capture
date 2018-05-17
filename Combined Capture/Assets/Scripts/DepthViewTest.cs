@@ -25,6 +25,9 @@ public class DepthViewTest : MonoBehaviour
 
     public GameObject captureObject;
 
+    public Material circleMaterial;
+    public Material cubeMaterial;
+
     private GameObject bodyPos;
     private GameObject circlePos;
 
@@ -130,10 +133,12 @@ public class DepthViewTest : MonoBehaviour
                             if (true)
                             {
                                 bodyPos = Instantiate(bodyObject);
-                                //bodyPos.tag = "detection";
-                                //bodyPos.layer = 9;
-                                //bodyPos.GetComponent<Renderer>().material.color = Color.red;
-                                
+                                /**
+                                bodyPos = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube));
+                                bodyPos.tag = "detection";
+                                bodyPos.layer = 9;
+                                bodyPos.GetComponent<Renderer>().material = circleMaterial;
+                                **/
                                 //bodyPos.GetComponent<MeshRenderer>().enabled = false;
                                 double xPercent = (double)l / 129.0;
                                 float xFloat = (float)xPercent * 29.5f;
@@ -155,10 +160,13 @@ public class DepthViewTest : MonoBehaviour
                                 float yPos = 1 * (8.2f + yFloat);
                                 //if (l % 3 == 0 && k % 3 == 0)
                                 //{
-                                circlePos = Instantiate(captureObject);
-                                //circlePos.GetComponent<Renderer>().material.color = Color.blue;
+                                /**
+                                circlePos = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+                                circlePos.GetComponent<Renderer>().material = cubeMaterial;
                                 //circlePos.GetComponent<MeshRenderer>().enabled = false;
-                                //circlePos.tag = "detection";
+                                circlePos.tag = "detection";
+                                **/
+                                circlePos = Instantiate(captureObject);
                                 circlePos.transform.position = new Vector3(xPos, yPos, 0);
                                 //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
                                 //}
