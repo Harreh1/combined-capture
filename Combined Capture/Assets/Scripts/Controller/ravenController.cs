@@ -19,19 +19,24 @@ public class ravenController : MonoBehaviour {
     public float minY;
     public float maxY;
 
+    public Slider captureProgress;
+    public GameObject canvas;
+    public Slider currentSlider;
     List<Vector3> collisionPoints;
 
     public static string animalName;
 
+    public float startCap;
+    public float currentCap;
 
     // Use this for initialization
     void Start () {
         this.gameObject.SetActive(true);
         waitTime = startWaitTime;
         avoidingMultipler = 0;
-        moveSpots = moveSpotsArray[Random.Range(0, moveSpotsArray.Length-1)];
+        moveSpots = moveSpotsArray[Random.Range(0, 8)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        
+        canvas = GameObject.Find("Canvas");
 	}
 	
 	// Update is called once per frame
@@ -41,16 +46,27 @@ public class ravenController : MonoBehaviour {
         {
             foreach(var p in collisionPoints)
             {
-                if(p.x > transform.position.x -0.1 && p.x < transform.position.x + 0.1
+                if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
                     && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
+                    /**
+                    if(currentSlider = null)
+                    {
+                        currentSlider = Instantiate(captureProgress, canvas.transform);
+                        currentSlider.transform.position = transform.position;
+                    } else
+                    {
+                        currentSlider.value = +1 / 10;
+                    } **/
+
+                    
                     animalName = this.name;
-                    ravenCaptureDetector.isCaptured = true;
+                    captureDetector.isRavenCaptured = true;
+                    scoreManager.ravenCount -= 1;
                     Destroy(this.gameObject);
+
                 }
-
             }
-
         } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;

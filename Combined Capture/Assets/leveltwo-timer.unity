@@ -173,7 +173,7 @@ Prefab:
     - target: {fileID: 224054674790677516, guid: a11fc0b66536e014aa2c77e342d52089,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 432.3
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 224054674790677516, guid: a11fc0b66536e014aa2c77e342d52089,
         type: 2}
@@ -627,6 +627,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 185921186}
+  - {fileID: 1242192630}
   - {fileID: 764650453}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -665,7 +666,7 @@ RectTransform:
   m_LocalScale: {x: 0.99991804, y: 0.99991804, z: 0.99991804}
   m_Children: []
   m_Father: {fileID: 746331234}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -724,7 +725,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 764650454}
   raven: {fileID: 4905741400163862, guid: 3aa06dd49f5bfc749b9abb717d5fc174, type: 2}
-  bug: {fileID: 4279848938498624, guid: d22f2e93810552d45867645ca23cceff, type: 2}
+  elephant: {fileID: 4279848938498624, guid: d22f2e93810552d45867645ca23cceff, type: 2}
+  speedup: 1
+  speedup2: 1
 --- !u!4 &834044199 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4262623879945472, guid: 384d8e86a580ddb448d3a5a6dc55e1c4,
@@ -853,6 +856,94 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3806015621c0b5044a03c914930eba15, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1242192629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1242192630}
+  - component: {fileID: 1242192632}
+  - component: {fileID: 1242192631}
+  - component: {fileID: 1242192633}
+  m_Layer: 5
+  m_Name: totalAnimals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1242192630
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242192629}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746331234}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 468, y: 234}
+  m_SizeDelta: {x: 432, y: 81}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1242192631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242192629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 95acb2058dd12524d841a7d5f7c02115, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 49
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1242192632
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242192629}
+--- !u!114 &1242192633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242192629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab60dbc9e7e7b0d4d88b8ffbf0bb3f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counter: 0
+  text: {fileID: 1242192631}
 --- !u!1001 &1263521134
 Prefab:
   m_ObjectHideFlags: 0
@@ -1063,6 +1154,14 @@ Prefab:
       propertyPath: moveSpotsArray.Array.data[8]
       value: 
       objectReference: {fileID: 321187549}
+    - target: {fileID: 1427849518002144, guid: d22f2e93810552d45867645ca23cceff, type: 2}
+      propertyPath: m_TagString
+      value: animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279848938498624, guid: d22f2e93810552d45867645ca23cceff, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d22f2e93810552d45867645ca23cceff, type: 2}
   m_IsPrefabParent: 0
@@ -1215,6 +1314,10 @@ Prefab:
         type: 2}
       propertyPath: speed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657785044890650, guid: 3aa06dd49f5bfc749b9abb717d5fc174, type: 2}
+      propertyPath: m_TagString
+      value: animal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3aa06dd49f5bfc749b9abb717d5fc174, type: 2}

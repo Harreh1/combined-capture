@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Coll
   - detection
+  - animal
+  - raven
+  - elephant
   layers:
   - Default
   - TransparentFX

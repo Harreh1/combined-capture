@@ -21,6 +21,10 @@ public class DepthViewTest : MonoBehaviour
 
     public GameObject depthPlane;
 
+    public GameObject bodyObject;
+
+    public GameObject captureObject;
+
     private GameObject bodyPos;
     private GameObject circlePos;
 
@@ -29,6 +33,7 @@ public class DepthViewTest : MonoBehaviour
     private SpriteRenderer srend;
 
     public static List<Vector3> circlePositions;
+
 
     // Use this for initialization
     void Start()
@@ -83,7 +88,7 @@ public class DepthViewTest : MonoBehaviour
                 {
                     byte intensity = (byte)(dp >> 4);
                     // 70 with 125cm difference
-                    if (intensity !=0 && intensity < 80)
+                    if (intensity !=0 && intensity < 70)
                     {
                         /**
                         data[index++] = intensity;
@@ -122,12 +127,13 @@ public class DepthViewTest : MonoBehaviour
                     {
                         if (detectionFrame[l, k] == 1)
                         {
-                            if (false)
+                            if (true)
                             {
-                                bodyPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                bodyPos.tag = "detection";
-                                bodyPos.layer = 9;
-                                bodyPos.GetComponent<Renderer>().material.color = Color.red;
+                                bodyPos = Instantiate(bodyObject);
+                                //bodyPos.tag = "detection";
+                                //bodyPos.layer = 9;
+                                //bodyPos.GetComponent<Renderer>().material.color = Color.red;
+                                
                                 //bodyPos.GetComponent<MeshRenderer>().enabled = false;
                                 double xPercent = (double)l / 129.0;
                                 float xFloat = (float)xPercent * 29.5f;
@@ -147,16 +153,15 @@ public class DepthViewTest : MonoBehaviour
                                 float yFloat = (float)yPercent * -17f;
                                 float xPos = 1 * (14.3f - xFloat);
                                 float yPos = 1 * (8.2f + yFloat);
-                                if (l % 3 == 0 && k % 3 == 0)
-                                {
-                                    circlePos = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                                    circlePos.GetComponent<Renderer>().material.color = Color.blue;
-                                    //circlePos.GetComponent<MeshRenderer>().enabled = false;
-                                    circlePos.tag = "detection";
-
-                                    circlePos.transform.position = new Vector3(xPos, yPos, 0);
-                                    //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
-                                }
+                                //if (l % 3 == 0 && k % 3 == 0)
+                                //{
+                                circlePos = Instantiate(captureObject);
+                                //circlePos.GetComponent<Renderer>().material.color = Color.blue;
+                                //circlePos.GetComponent<MeshRenderer>().enabled = false;
+                                //circlePos.tag = "detection";
+                                circlePos.transform.position = new Vector3(xPos, yPos, 0);
+                                //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                                //}
 
                                 circlePositions.Add(new Vector3(xPos, yPos, 0));
                                 

@@ -6,24 +6,34 @@ using UnityEngine.UI;
 
 public class ravenTextManager2 :MonoBehaviour {
 
-    public bool isCaptured = false;
+    public bool ravenCaptured = false;
+    public bool elephantCaptured = false;
     public string animalName;
     public Text text;
 
 	// Use this for initialization
 	void Start () {
-        isCaptured = ravenCaptureDetector.isCaptured;
+        ravenCaptured = captureDetector.isRavenCaptured;
+        elephantCaptured = captureDetector.isElephantCaptured;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        isCaptured = ravenCaptureDetector.isCaptured;
-        if (isCaptured == true)
+        ravenCaptured = captureDetector.isRavenCaptured;
+        elephantCaptured = captureDetector.isElephantCaptured;
+        if (elephantCaptured == true)
+        {
+            text.text = "Elephant Captured!";
+            StartCoroutine(LateCall());
+            captureDetector.isElephantCaptured = false;
+        }
+        else if (ravenCaptured == true)
         {
             text.text = "Raven Captured!";
             StartCoroutine(LateCall());
-            ravenCaptureDetector.isCaptured = false;
-        }	
+            captureDetector.isRavenCaptured = false;
+        }
+        
 	}
 
     //after same sec Object to false

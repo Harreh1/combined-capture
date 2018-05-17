@@ -131,7 +131,7 @@ public class turtle_blue_animation : MonoBehaviour
         if (avoiding)
         {
             Vector2 direction = moveSpots.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
             moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             transform.position = Vector2.MoveTowards(transform.position, moveSpots.position * avoidingMultipler, speed * Time.deltaTime);
         }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114881581576690048}
   m_Layer: 2
   m_Name: Raven
-  m_TagString: Untagged
+  m_TagString: animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

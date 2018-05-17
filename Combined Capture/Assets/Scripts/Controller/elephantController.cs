@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class bugController : MonoBehaviour {
+public class elephantController : MonoBehaviour {
 
     public float speed;
     private float waitTime;
@@ -40,14 +40,19 @@ public class bugController : MonoBehaviour {
         if (DepthViewTest.circlePositions != null)
         {
             int pointChecker = 0;
-            float width = 1f;
+            float width = 1.3f;
             foreach(var p in collisionPoints)
             {
-                if(p.x > transform.position.x -0.1 && p.x < transform.position.x + 0.1
+                if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
                     && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
                     pointChecker += 1;
-                    
+
+                }
+
+                if(pointChecker == 0)
+                {
+                    continue;
                 }
 
                 if (p.x > transform.position.x - width - 0.1 && p.x < transform.position.x - width + 0.1
@@ -95,17 +100,18 @@ public class bugController : MonoBehaviour {
                 if (pointChecker >= 4)
                 {
                     animalName = this.name;
-                    ravenCaptureDetector.isCaptured = true;
+                    captureDetector.isElephantCaptured = true;
+                    scoreManager.elephantCount -= 1;
                     Destroy(this.gameObject);
+                    break;
                 }
-                Debug.Log(pointChecker);
 
             }
 
         } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime);
         

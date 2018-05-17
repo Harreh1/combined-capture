@@ -9,12 +9,15 @@ public class timerManager :MonoBehaviour {
     public Text text;
     private float startTime;
     public Transform raven;
-    public Transform bug;
-
+    public Transform elephant;
+    public static string endTime;
+    public static float endSeconds;
+    public bool speedup = true;
+    public bool speedup2 = true;
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("spawnRaven", 5f, 4f);
-        InvokeRepeating("spawnBug", 12f, 10f);
+        InvokeRepeating("spawnRaven", 5f, 3f);
+        InvokeRepeating("spawnElephant", 11f, 10f);
         startTime = Time.time;
     }
 
@@ -25,14 +28,30 @@ public class timerManager :MonoBehaviour {
 
         string minutes = ((int)currentTime / 60).ToString();
         string seconds = (currentTime % 60).ToString("f2");
-        if((currentTime % 60) < 10)
+        if((currentTime%60).ToString("f0") == "59" && speedup)
+        {
+            InvokeRepeating("spawnRaven", 1f, 3f);
+            Debug.Log("worked");
+            speedup = false;
+        }
+        if ((currentTime % 120).ToString("f0") == "119" && speedup2)
+        {
+            InvokeRepeating("spawnRaven", 1f, 1f);
+            Debug.Log("worked");
+            speedup2 = false;
+        }
+        if ((currentTime % 60) < 10)
         {
             text.text = minutes + ":0" + seconds;
+            endTime = minutes + ":0" + seconds;
         }
         else
         {
             text.text = minutes + ":" + seconds;
+            endTime = minutes + ":" + seconds;
         }
+        endSeconds = currentTime;
+
 
     }
 
@@ -40,8 +59,8 @@ public class timerManager :MonoBehaviour {
     {
         Instantiate(raven, new Vector3(Random.Range(-12.5f, 12.5f), Random.Range(-7.5f, 7.5f), 0), Quaternion.identity);
     }
-    private void spawnBug()
+    private void spawnElephant()
     {
-        Instantiate(bug, new Vector3(Random.Range(-12.5f, 12.5f), Random.Range(-7.5f, 7.5f), 0), Quaternion.identity);
+        Instantiate(elephant, new Vector3(Random.Range(-12.5f, 12.5f), Random.Range(-7.5f, 7.5f), 0), Quaternion.identity);
     }
 }

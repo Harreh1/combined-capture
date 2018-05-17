@@ -11,3 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/EndScene.unity
     guid: d0e64943fc3a1b8468024df31753d2ca
+  - enabled: 1
+    path: Assets/leveltwo-timer.unity
+    guid: 3a5794eda4c8e284f9d02fc16b2d20e3
+  - enabled: 1
+    path: Assets/leveltwo.unity
+    guid: 299d518f1d5acb34fb3aed1af8046735
+  - enabled: 1
+    path: Assets/game over.unity
+    guid: 6f1cd50ff9ae6334f875eeeb199cb317
