@@ -28,7 +28,7 @@ public class ravenController : MonoBehaviour {
 
     public float startCap;
     public float currentCap;
-
+    public bool hit;
     // Use this for initialization
     void Start () {
         this.gameObject.SetActive(true);
@@ -37,10 +37,27 @@ public class ravenController : MonoBehaviour {
         moveSpots = moveSpotsArray[Random.Range(0, 8)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         canvas = GameObject.Find("Canvas");
-	}
+        currentSlider = Instantiate(captureProgress);
+        currentSlider.transform.position = transform.position;
+        currentSlider.transform.SetParent(canvas.transform);
+        currentSlider.transform.localScale -= new Vector3(45,45,0);
+        hit = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        hit = false;
+        if(currentSlider.value == 0)
+        {
+            currentSlider.enabled = false;
+        } else
+        {
+            currentSlider.enabled = true;
+        }
+        Vector3 currentpos = transform.position;
+        currentpos.y += 1f;
+        currentSlider.transform.position = currentpos;
+
         collisionPoints = DepthViewTest.circlePositions;
         if (DepthViewTest.circlePositions != null)
         {
@@ -49,24 +66,27 @@ public class ravenController : MonoBehaviour {
                 if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
                     && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
-                    /**
-                    if(currentSlider = null)
-                    {
-                        currentSlider = Instantiate(captureProgress, canvas.transform);
-                        currentSlider.transform.position = transform.position;
-                    } else
-                    {
-                        currentSlider.value = +1 / 10;
-                    } **/
-
                     
-                    animalName = this.name;
-                    captureDetector.isRavenCaptured = true;
-                    scoreManager.ravenCount -= 1;
-                    Destroy(this.gameObject);
-
+                    hit = true;
+                    currentSlider.value += 1 / 5f;
+                    if (currentSlider.value == 1)
+                    {
+                        animalName = this.name;
+                        captureDetector.isRavenCaptured = true;
+                        scoreManager.ravenCount -= 1;
+                        Destroy(currentSlider.gameObject);
+                        Destroy(this.gameObject);
+                    }
                 }
             }
+            if (hit == false)
+            {
+                if (currentSlider.value > 0)
+                {
+                    currentSlider.value -= 1 / 60f;
+                }
+            }
+
         } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;
