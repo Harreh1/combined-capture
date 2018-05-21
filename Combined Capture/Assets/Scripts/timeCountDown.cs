@@ -14,7 +14,7 @@ public class timeCountDown :MonoBehaviour {
     public static float endSeconds;
 	// Use this for initialization
 	void Start () {
-        startTime = 30f;
+        startTime = 59f;
     }
 
     // Update is called once per frame

@@ -130,8 +130,9 @@ public class DepthViewTest : MonoBehaviour
                     {
                         if (detectionFrame[l, k] == 1)
                         {
-                            if (true)
+                            if (l%2 == 0 && k%2 ==0)
                             {
+
                                 bodyPos = Instantiate(bodyObject);
                                 /**
                                 bodyPos = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube));
@@ -144,13 +145,14 @@ public class DepthViewTest : MonoBehaviour
                                 float xFloat = (float)xPercent * 29.5f;
                                 double yPercent = (double)k / 107.0;
                                 float yFloat = (float)yPercent * -17f;
+                                bodyPos.transform.localScale -= new Vector3(0.53f, 0.655f, 0.5f);
                                 bodyPos.transform.position = new Vector3(1 * (14.3f - xFloat), 1 * (8.2f + yFloat), 0);
                                 //l += 10;
                             }
                         }
                         else if (detectionFrame[l, k] == 0)
                         {
-                            if (true)
+                            if (l % 2 == 0 && k % 2 == 0)
                             {
                                 double xPercent = (double)l / 129.0;
                                 float xFloat = (float)xPercent * 29.5f;
@@ -168,9 +170,8 @@ public class DepthViewTest : MonoBehaviour
                                 **/
                                 circlePos = Instantiate(captureObject);
                                 circlePos.transform.position = new Vector3(xPos, yPos, 0);
-                                //circlePos.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+                                circlePos.transform.localScale -= new Vector3(0.54f, 0.655f, 0.5f);
                                 //}
-
                                 circlePositions.Add(new Vector3(xPos, yPos, 0));
                                 
                             }
@@ -223,22 +224,56 @@ public class DepthViewTest : MonoBehaviour
         int[,] newPixels = new int[originalPixels.GetLength(0), originalPixels.GetLength(1)];
         Point startingPos = new Point(-1, -1);
         
-        pixels.Push(new Point(0, 0));
-        pixels.Push(new Point(0, 25));
-        pixels.Push(new Point(0, 50));
-        pixels.Push(new Point(0, 105));
-        pixels.Push(new Point(127, 0));
+        pixels.Push(new Point(1, 1));
+        pixels.Push(new Point(1, 25));
+        pixels.Push(new Point(1, 50));
+        pixels.Push(new Point(1, 105));
+        pixels.Push(new Point(1, 10));
+        pixels.Push(new Point(1, 20));
+        pixels.Push(new Point(1, 30));
+        pixels.Push(new Point(1, 40));
+        pixels.Push(new Point(1, 60));
+        pixels.Push(new Point(1, 70));
+        pixels.Push(new Point(1, 80));
+        pixels.Push(new Point(1, 90));
+        pixels.Push(new Point(1, 100));
+        pixels.Push(new Point(127, 1));
         pixels.Push(new Point(127, 25));
         pixels.Push(new Point(127, 50));
         pixels.Push(new Point(127, 105));
-        pixels.Push(new Point(30, 0));
-        pixels.Push(new Point(60, 0));
-        pixels.Push(new Point(90, 0));
-        pixels.Push(new Point(120, 0));
+        pixels.Push(new Point(127, 10));
+        pixels.Push(new Point(127, 20));
+        pixels.Push(new Point(127, 30));
+        pixels.Push(new Point(127, 40));
+        pixels.Push(new Point(127, 60));
+        pixels.Push(new Point(127, 70));
+        pixels.Push(new Point(127, 80));
+        pixels.Push(new Point(127,90));
+        pixels.Push(new Point(127, 100));
+        pixels.Push(new Point(10, 1));
+        pixels.Push(new Point(20, 1));
+        pixels.Push(new Point(30, 1));
+        pixels.Push(new Point(40, 1));
+        pixels.Push(new Point(50, 1));
+        pixels.Push(new Point(60, 1));
+        pixels.Push(new Point(70, 1));
+        pixels.Push(new Point(80, 1));
+        pixels.Push(new Point(90, 1));
+        pixels.Push(new Point(100, 1));
+        pixels.Push(new Point(110, 1));
+        pixels.Push(new Point(120, 1));
+        pixels.Push(new Point(10, 105));
+        pixels.Push(new Point(20, 105));
         pixels.Push(new Point(30, 105));
+        pixels.Push(new Point(40, 105));
+        pixels.Push(new Point(50, 105));
         pixels.Push(new Point(60, 105));
+        pixels.Push(new Point(70, 105));
+        pixels.Push(new Point(80, 105));
         pixels.Push(new Point(90, 105));
-        pixels.Push(new Point(90, 105));
+        pixels.Push(new Point(100, 105));
+        pixels.Push(new Point(110, 105));
+        pixels.Push(new Point(120, 105));
         while (pixels.Count > 0)
         {
             Point a = pixels.Pop();

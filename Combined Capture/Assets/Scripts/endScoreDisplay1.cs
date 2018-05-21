@@ -8,7 +8,7 @@ public class endScoreDisplay1 : MonoBehaviour {
     public Text text;
 	// Use this for initialization
 	void Start () {
-        text.text = "Your score was " + scoreTracker.score;
+        text.text = "" + scoreTracker.score;
 	}
 	
 	// Update is called once per frame

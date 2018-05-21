@@ -23,7 +23,11 @@ public class elephantController : MonoBehaviour {
 
     public static string animalName;
 
+    public Slider captureProgress;
+    public GameObject canvas;
+    public Slider currentSlider;
 
+    public bool hit;
     // Use this for initialization
     void Start () {
         this.gameObject.SetActive(true);
@@ -31,11 +35,28 @@ public class elephantController : MonoBehaviour {
         avoidingMultipler = 0;
         moveSpots = moveSpotsArray[Random.Range(0, moveSpotsArray.Length-1)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        
-	}
+        canvas = GameObject.Find("Canvas");
+        currentSlider = Instantiate(captureProgress);
+        currentSlider.transform.position = transform.position;
+        currentSlider.transform.SetParent(canvas.transform);
+        currentSlider.transform.localScale -= new Vector3(44.4f, 44.8f, 0);
+        hit = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        hit = false;
+        Vector3 currentpos = transform.position;
+        if (currentSlider.value == 0)
+        {
+            currentpos.y += 20f;
+        }
+        else
+        {
+            currentpos.y += 1.5f;
+        }
+        currentSlider.transform.position = currentpos;
+
         collisionPoints = DepthViewTest.circlePositions;
         if (DepthViewTest.circlePositions != null)
         {
@@ -99,13 +120,26 @@ public class elephantController : MonoBehaviour {
 
                 if (pointChecker >= 4)
                 {
-                    animalName = this.name;
-                    captureDetector.isElephantCaptured = true;
-                    scoreManager.elephantCount -= 1;
-                    Destroy(this.gameObject);
-                    break;
+                    hit = true;
+                    currentSlider.value += 1 / 500f;
+                    if (currentSlider.value == 1)
+                    {
+                        animalName = this.name;
+                        captureDetector.isElephantCaptured = true;
+                        scoreManager.elephantCount -= 1;
+                        Destroy(currentSlider.gameObject);
+                        Destroy(this.gameObject);
+                        break;
+                    }
                 }
 
+            }
+            if (hit == false)
+            {
+                if (currentSlider.value > 0)
+                {
+                    currentSlider.value -= 1 / 1500f;
+                }
             }
 
         } 

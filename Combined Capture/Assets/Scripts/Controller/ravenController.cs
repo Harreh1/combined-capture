@@ -26,8 +26,6 @@ public class ravenController : MonoBehaviour {
 
     public static string animalName;
 
-    public float startCap;
-    public float currentCap;
     public bool hit;
     // Use this for initialization
     void Start () {
@@ -47,15 +45,14 @@ public class ravenController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         hit = false;
-        if(currentSlider.value == 0)
+        Vector3 currentpos = transform.position;
+        if (currentSlider.value == 0)
         {
-            currentSlider.enabled = false;
+            currentpos.y += 20f;
         } else
         {
-            currentSlider.enabled = true;
+            currentpos.y += 1f;
         }
-        Vector3 currentpos = transform.position;
-        currentpos.y += 1f;
         currentSlider.transform.position = currentpos;
 
         collisionPoints = DepthViewTest.circlePositions;
@@ -68,7 +65,7 @@ public class ravenController : MonoBehaviour {
                 {
                     
                     hit = true;
-                    currentSlider.value += 1 / 5f;
+                    currentSlider.value += 1 / 2.5f;
                     if (currentSlider.value == 1)
                     {
                         animalName = this.name;
