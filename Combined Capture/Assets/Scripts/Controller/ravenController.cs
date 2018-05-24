@@ -19,10 +19,16 @@ public class ravenController : MonoBehaviour {
     public float minY;
     public float maxY;
 
+    public Transform firework;
+
     public Slider captureProgress;
     public GameObject canvas;
     public Slider currentSlider;
     List<Vector3> collisionPoints;
+
+    public Sprite ravenHappy;
+    public Sprite ravenSad;
+    public SpriteRenderer sp;
 
     public static string animalName;
 
@@ -35,6 +41,7 @@ public class ravenController : MonoBehaviour {
         moveSpots = moveSpotsArray[Random.Range(0, 8)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         canvas = GameObject.Find("Canvas");
+        sp = GetComponent<Renderer>() as SpriteRenderer;
         currentSlider = Instantiate(captureProgress);
         currentSlider.transform.position = transform.position;
         currentSlider.transform.SetParent(canvas.transform);
@@ -49,7 +56,9 @@ public class ravenController : MonoBehaviour {
         if (currentSlider.value == 0)
         {
             currentpos.y += 20f;
-        } else
+            sp.sprite = ravenSad;
+        }
+        else
         {
             currentpos.y += 1f;
         }
@@ -63,7 +72,7 @@ public class ravenController : MonoBehaviour {
                 if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
                     && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
                 {
-                    
+                    sp.sprite = ravenHappy;
                     hit = true;
                     currentSlider.value += 1 / 2.5f;
                     if (currentSlider.value == 1)
@@ -71,6 +80,7 @@ public class ravenController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isRavenCaptured = true;
                         scoreManager.ravenCount -= 1;
+                        Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);
                     }
@@ -87,7 +97,7 @@ public class ravenController : MonoBehaviour {
         } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime);
         

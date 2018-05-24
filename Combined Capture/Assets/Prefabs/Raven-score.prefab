@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1657785044890650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.3, y: 0.06, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 4.77}
+    oldSize: {x: 26.73, y: 12.76}
     newSize: {x: 10, y: 4.77}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -95,12 +95,15 @@ MonoBehaviour:
   maxX: 13.5
   minY: -7.5
   maxY: 7.5
+  firework: {fileID: 4695147376659142, guid: ce4442780f96d084498ebeb57f7c2920, type: 2}
   captureProgress: {fileID: 114470105224808026, guid: 78e2ae7c76f2cdb41b3a2a2d364cc8f3,
     type: 2}
   canvas: {fileID: 1929392312221318, guid: 98da134e726a9f6428aa82a4a7724eb0, type: 2}
   currentSlider: {fileID: 0}
-  startCap: 0
-  currentCap: 0
+  ravenHappy: {fileID: 21300000, guid: c4af55ffa5aa67d42aaad6dfa969225f, type: 3}
+  ravenSad: {fileID: 21300000, guid: 63c9bf860b167ca46b861c4965e68b5b, type: 3}
+  sp: {fileID: 0}
+  hit: 0
 --- !u!212 &212491866976734768
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -135,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b140aed0871702b40b98cce8fa815aa8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63c9bf860b167ca46b861c4965e68b5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1427849518002144}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -10.95, y: 3.89, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27604826f92ecfd43b751ac8cf8d8c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   startWaitTime: 0
   moveSpotsArray:
   - {fileID: 4007339573076664, guid: b49ff622af91f9f468383ea2f22b0746, type: 2}
@@ -69,10 +69,14 @@ MonoBehaviour:
   maxX: 11.5
   minY: -5.5
   maxY: 5.5
+  firework: {fileID: 4695147376659142, guid: ce4442780f96d084498ebeb57f7c2920, type: 2}
   captureProgress: {fileID: 114470105224808026, guid: 78e2ae7c76f2cdb41b3a2a2d364cc8f3,
     type: 2}
   canvas: {fileID: 1929392312221318, guid: 98da134e726a9f6428aa82a4a7724eb0, type: 2}
   currentSlider: {fileID: 0}
+  elephantHappy: {fileID: 21300000, guid: 0b9992567e6dbc14b9ea124783931c30, type: 3}
+  elephantSad: {fileID: 21300000, guid: 8bdab0a64c2af7f48a2fd6c9dd336421, type: 3}
+  sp: {fileID: 0}
   hit: 0
 --- !u!212 &212843713638268162
 SpriteRenderer:
@@ -108,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5cce11862c1d27848bce27ba8d193334, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bdab0a64c2af7f48a2fd6c9dd336421, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

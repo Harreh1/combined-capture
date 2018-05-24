@@ -10,6 +10,7 @@ TagManager:
   - animal
   - raven
   - elephant
+  - mouse
   layers:
   - Default
   - TransparentFX

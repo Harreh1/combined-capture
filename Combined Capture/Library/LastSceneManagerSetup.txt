@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/leveltwo-score.unity
+- path: Assets/Menu.unity
   isLoaded: 1
   isActive: 1

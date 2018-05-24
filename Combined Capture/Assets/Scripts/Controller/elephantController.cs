@@ -21,11 +21,17 @@ public class elephantController : MonoBehaviour {
 
     List<Vector3> collisionPoints;
 
+    public Transform firework;
+
     public static string animalName;
 
     public Slider captureProgress;
     public GameObject canvas;
     public Slider currentSlider;
+
+    public Sprite elephantHappy;
+    public Sprite elephantSad;
+    public SpriteRenderer sp;
 
     public bool hit;
     // Use this for initialization
@@ -36,6 +42,7 @@ public class elephantController : MonoBehaviour {
         moveSpots = moveSpotsArray[Random.Range(0, moveSpotsArray.Length-1)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         canvas = GameObject.Find("Canvas");
+        sp = GetComponent<Renderer>() as SpriteRenderer;
         currentSlider = Instantiate(captureProgress);
         currentSlider.transform.position = transform.position;
         currentSlider.transform.SetParent(canvas.transform);
@@ -50,6 +57,7 @@ public class elephantController : MonoBehaviour {
         if (currentSlider.value == 0)
         {
             currentpos.y += 20f;
+            sp.sprite = elephantSad;
         }
         else
         {
@@ -120,6 +128,7 @@ public class elephantController : MonoBehaviour {
 
                 if (pointChecker >= 4)
                 {
+                    sp.sprite = elephantHappy;
                     hit = true;
                     currentSlider.value += 1 / 500f;
                     if (currentSlider.value == 1)
@@ -127,6 +136,7 @@ public class elephantController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isElephantCaptured = true;
                         scoreManager.elephantCount -= 1;
+                        Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);
                         break;
@@ -145,7 +155,7 @@ public class elephantController : MonoBehaviour {
         } 
         transform.position = Vector2.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
         Vector2 direction = moveSpots.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime);
         
