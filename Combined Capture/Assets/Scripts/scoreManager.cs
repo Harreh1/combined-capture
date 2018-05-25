@@ -26,7 +26,14 @@ public class scoreManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         score = 0;
-	}
+        ravenCount = 1;
+        elephantCount = 1;
+        mouseCount = 1;
+        cowCount = 1;
+        turtleCount = 1;
+        crocCount = 1;
+        bombCount = 1;
+    }
 	
 	// Update is called once per frame
 	void Update () {

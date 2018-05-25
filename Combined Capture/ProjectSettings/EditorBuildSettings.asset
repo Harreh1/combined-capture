@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/levelone-score.unity
     guid: dfd961655c3c30f40a7c03a8323b1fa8
+  - enabled: 1
+    path: Assets/countdownFinished1.unity
+    guid: f8a905ed5a1ca6645a832a1453547d7b

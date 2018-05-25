@@ -58,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.77, y: 3.43}
+    oldSize: {x: 6.5, y: 6.51}
     newSize: {x: 10, y: 4.77}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e44f1f2848d2a41aabda65d3d27562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   startWaitTime: 0
   moveSpotsArray:
   - {fileID: 4943734198568828, guid: 12b3d5d107ed0ce499ba2f3bb1f265d7, type: 2}
@@ -100,6 +100,9 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1929392312221318, guid: 98da134e726a9f6428aa82a4a7724eb0, type: 2}
   currentSlider: {fileID: 0}
+  spiderBlack: {fileID: 21300000, guid: a4e29a2f6f3a06e40894801d74e96178, type: 3}
+  spiderRed: {fileID: 21300000, guid: e258d3ed655a87c47865a21c15e92e00, type: 3}
+  sp: {fileID: 0}
   hit: 0
 --- !u!212 &212491866976734768
 SpriteRenderer:
@@ -135,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 763743de52651904eb7352b8ad86cc70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4e29a2f6f3a06e40894801d74e96178, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -81,6 +81,8 @@ public class mouseController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isMouseCaptured = true;
                         scoreManager.mouseCount -= 1;
+                        scoreManagerHard.mouseCount -= 1;
+                        scoreManagerMenu.mouseCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);

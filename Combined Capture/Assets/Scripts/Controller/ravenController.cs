@@ -80,6 +80,8 @@ public class ravenController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isRavenCaptured = true;
                         scoreManager.ravenCount -= 1;
+                        scoreManagerHard.ravenCount -= 1;
+                        scoreManagerMenu.ravenCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);

@@ -136,6 +136,8 @@ public class elephantController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isElephantCaptured = true;
                         scoreManager.elephantCount -= 1;
+                        scoreManagerHard.elephantCount -= 1;
+                        scoreManagerMenu.elephantCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);

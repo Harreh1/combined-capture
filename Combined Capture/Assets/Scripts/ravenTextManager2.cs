@@ -89,7 +89,7 @@ public class ravenTextManager2 :MonoBehaviour {
         }
         else if (bombCaptured == true)
         {
-            text.text = "Bomb Captured!";
+            text.text = "Spider Captured!";
             scoreChange.color = new Color(255, 0, 0);
             scoreChange.text = "-20";
             StartCoroutine(LateCall());

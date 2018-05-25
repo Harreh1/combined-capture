@@ -26,6 +26,12 @@ public class bombController : MonoBehaviour {
     public Slider currentSlider;
     List<Vector3> collisionPoints;
 
+    public Sprite spiderBlack;
+    public Sprite spiderRed;
+    public SpriteRenderer sp;
+
+
+
     public static string animalName;
 
     public bool hit;
@@ -37,6 +43,7 @@ public class bombController : MonoBehaviour {
         moveSpots = moveSpotsArray[Random.Range(0, 8)];
         moveSpots.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         canvas = GameObject.Find("Canvas");
+        sp = GetComponent<Renderer>() as SpriteRenderer;
         currentSlider = Instantiate(captureProgress);
         currentSlider.transform.position = transform.position;
         currentSlider.transform.SetParent(canvas.transform);
@@ -51,6 +58,7 @@ public class bombController : MonoBehaviour {
         if (currentSlider.value == 0)
         {
             currentpos.y += 20f;
+            sp.sprite = spiderBlack;
         } else
         {
             currentpos.y += 1f;
@@ -62,17 +70,19 @@ public class bombController : MonoBehaviour {
         {
             foreach(var p in collisionPoints)
             {
-                if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
-                    && p.y > transform.position.y - 0.1 && p.y < transform.position.y + 0.1)
+                if (p.x > transform.position.x - 0.13 && p.x < transform.position.x + 0.13
+                    && p.y > transform.position.y - 0.13 && p.y < transform.position.y + 0.13)
                 {
-                    
+                    sp.sprite = spiderRed;
                     hit = true;
-                    currentSlider.value += 1 / 2.5f;
+                    currentSlider.value += 1 / 4.5f;
                     if (currentSlider.value == 1)
                     {
                         animalName = this.name;
                         captureDetector.isBombCaptured = true;
                         scoreManager.bombCount -= 1;
+                        scoreManagerHard.bombCount -= 1;
+                        scoreManagerMenu.bombCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);

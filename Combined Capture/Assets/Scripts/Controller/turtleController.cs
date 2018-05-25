@@ -79,6 +79,8 @@ public class turtleController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isTurtleCaptured = true;
                         scoreManager.turtleCount -= 1;
+                        scoreManagerHard.turtleCount -= 1;
+                        scoreManagerMenu.turtleCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);

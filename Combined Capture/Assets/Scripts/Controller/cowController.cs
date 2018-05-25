@@ -70,7 +70,7 @@ public class cowController : MonoBehaviour {
         if (DepthViewTest.circlePositions != null)
         {
             int pointChecker = 0;
-            float width = 1.3f;
+            float width = 0.8f;
             foreach(var p in collisionPoints)
             {
                 if (p.x > transform.position.x - 0.1 && p.x < transform.position.x + 0.1
@@ -137,6 +137,8 @@ public class cowController : MonoBehaviour {
                         animalName = this.name;
                         captureDetector.isCowCaptured = true;
                         scoreManager.cowCount -= 1;
+                        scoreManagerHard.cowCount -= 1;
+                        scoreManagerMenu.cowCount -= 1;
                         Instantiate(firework, new Vector3(0, 0, 1), Quaternion.identity);
                         Destroy(currentSlider.gameObject);
                         Destroy(this.gameObject);
