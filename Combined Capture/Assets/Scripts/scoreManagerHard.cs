@@ -16,6 +16,8 @@ public class scoreManagerHard : MonoBehaviour {
     public Transform animal6object;
     public Transform bombObject;
     public Text text;
+    public Transform red;
+
     public static int ravenCount = 1;
     public static int elephantCount = 1;
     public static int mouseCount = 1;
@@ -38,46 +40,48 @@ public class scoreManagerHard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         text.text = "Score: " + score.ToString();
-        Debug.Log("G");
         if (elephantCount < 1)
         {
-            score += 50;
+            score += 100;
             elephantCount += 1;
             StartCoroutine(spawnElephant(4));   
         }
         if (ravenCount < 1)
         {
-            Debug.Log("A");
-            score += 15;
+            score += 35;
             ravenCount += 1;
             StartCoroutine(spawnRaven(3));
         }
         if (mouseCount < 1)
         {
-            score += 5;
+            score += 20;
             mouseCount += 1;
             StartCoroutine(spawnMouse(2));
         }
         if (cowCount < 1)
         {
-            score += 50;
+            score += 100;
             cowCount += 1;
             StartCoroutine(spawnCow(4));
         }
         if (turtleCount < 1)
         {
-            score += 5;
+            score += 20;
             turtleCount += 1;
             StartCoroutine(spawnTurtle(2));
         }
         if (crocCount < 1)
         {
-            score += 15;
+            score += 35;
             crocCount += 1;
             StartCoroutine(spawnCroc(2));
         }
         if (bombCount < 1)
         {
+            SpriteRenderer sp = red.GetComponent<SpriteRenderer>();
+            sp.enabled = true;
+            StartCoroutine(redDisplay(0.15f));
+
             score -= 20;
             bombCount += 1;
             StartCoroutine(spawnBomb(2));
@@ -129,5 +133,12 @@ public class scoreManagerHard : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         Instantiate(animal6object, new Vector3(Random.Range(-12.5f, 12.5f), Random.Range(-7.5f, 7.5f), 0), Quaternion.identity);
+    }
+
+    IEnumerator redDisplay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SpriteRenderer sp = red.GetComponent<SpriteRenderer>();
+        sp.enabled = false;
     }
 }

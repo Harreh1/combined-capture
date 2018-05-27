@@ -46,7 +46,7 @@ public class turtle_blue_animation : MonoBehaviour
             if (angle >= 45 && angle < 135)
             {
                 
-                animator.Play("blue_turtle_right");
+                    
             }
             else if (angle >= 135 && angle < 225)
             {

@@ -119,8 +119,14 @@ public class DepthViewTest : MonoBehaviour
                 detectionFrame = FloodFill(detectionFrame);
                 
                 GameObject[] detections;
-                detections = GameObject.FindGameObjectsWithTag("detection");
+                detections = GameObject.FindGameObjectsWithTag("bodyPos");
                 foreach (GameObject d in detections)
+                {
+                    Destroy(d);
+                }
+                GameObject[] detections2;
+                detections2 = GameObject.FindGameObjectsWithTag("circlePos");
+                foreach (GameObject d in detections2)
                 {
                     Destroy(d);
                 }

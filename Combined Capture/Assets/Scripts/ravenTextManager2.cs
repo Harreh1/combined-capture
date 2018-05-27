@@ -43,7 +43,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Elephant Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+50";
+            scoreChange.text = "+100";
             StartCoroutine(LateCall());
             captureDetector.isElephantCaptured = false;
         }
@@ -51,7 +51,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Raven Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+15";
+            scoreChange.text = "+35";
             StartCoroutine(LateCall());
             captureDetector.isRavenCaptured = false;
         }
@@ -59,7 +59,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Mouse Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+5";
+            scoreChange.text = "+20";
             StartCoroutine(LateCall());
             captureDetector.isMouseCaptured = false;
         }
@@ -67,7 +67,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Cow Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+50";
+            scoreChange.text = "+100";
             StartCoroutine(LateCall());
             captureDetector.isCowCaptured = false;
         }
@@ -75,7 +75,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Turtle Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+5";
+            scoreChange.text = "+20";
             StartCoroutine(LateCall());
             captureDetector.isTurtleCaptured = false;
         }
@@ -83,7 +83,7 @@ public class ravenTextManager2 :MonoBehaviour {
         {
             text.text = "Crocodile Captured!";
             scoreChange.color = new Color(0, 255, 0);
-            scoreChange.text = "+15";
+            scoreChange.text = "+35";
             StartCoroutine(LateCall());
             captureDetector.isCrocCaptured = false;
         }

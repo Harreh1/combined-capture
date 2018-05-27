@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212491866976734768}
   - component: {fileID: 61632110627625462}
   - component: {fileID: 114659382356794556}
+  - component: {fileID: 95517883823275398}
   m_Layer: 2
   m_Name: croc-score
   m_TagString: raven
@@ -67,6 +68,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 4.77}
   m_EdgeRadius: 0
+--- !u!95 &95517883823275398
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1657785044890650}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c917ac629009364284a387479018cc2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114659382356794556
 MonoBehaviour:
   m_ObjectHideFlags: 1

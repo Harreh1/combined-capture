@@ -11,6 +11,8 @@ TagManager:
   - raven
   - elephant
   - mouse
+  - bodyPos
+  - circlePos
   layers:
   - Default
   - TransparentFX
