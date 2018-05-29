@@ -16,6 +16,7 @@ public class scoreManagerMenu : MonoBehaviour {
     public Transform animal6object;
     public Transform bombObject;
     public Transform red;
+    public Transform green;
 
     public Text text;
     public static int ravenCount = 1;
@@ -76,6 +77,10 @@ public class scoreManagerMenu : MonoBehaviour {
             score += 35;
             crocCount += 1;
             StartCoroutine(spawnCroc(2));
+
+            SpriteRenderer sp = green.GetComponent<SpriteRenderer>();
+            sp.enabled = true;
+            StartCoroutine(greenDisplay(1.5f));
         }
         if (bombCount < 1)
         {
@@ -83,7 +88,7 @@ public class scoreManagerMenu : MonoBehaviour {
             bombCount += 1;
             SpriteRenderer sp = red.GetComponent<SpriteRenderer>();
             sp.enabled = true;
-            StartCoroutine(redDisplay(0.15f));
+            StartCoroutine(redDisplay(1f));
 
             StartCoroutine(spawnBomb(2));
         }
@@ -137,6 +142,13 @@ public class scoreManagerMenu : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         SpriteRenderer sp = red.GetComponent<SpriteRenderer>();
+        sp.enabled = false;
+    }
+
+    IEnumerator greenDisplay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SpriteRenderer sp = green.GetComponent<SpriteRenderer>();
         sp.enabled = false;
     }
 }

@@ -28,8 +28,7 @@ public class handDisplaysClosed : MonoBehaviour {
         GameObject[] detections;
         detections = GameObject.FindGameObjectsWithTag("circlePos");
         Quaternion r = this.transform.rotation;
-
-        if (detections1.Length > 500)
+        if (detections1.Length > 100)
         {
             if (detections.Length < 50)
             {
@@ -52,6 +51,9 @@ public class handDisplaysClosed : MonoBehaviour {
                     sp.enabled = true;
                 }
             }
+        } else
+        {
+            sp.enabled = false;
         }
 
     }

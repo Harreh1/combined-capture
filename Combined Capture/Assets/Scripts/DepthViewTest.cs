@@ -91,7 +91,7 @@ public class DepthViewTest : MonoBehaviour
                 {
                     byte intensity = (byte)(dp >> 4);
                     // 70 with 125cm difference
-                    if (intensity !=0 && intensity < 70)
+                    if (intensity !=0 && intensity < 75 )
                     {
                         /**
                         data[index++] = intensity;

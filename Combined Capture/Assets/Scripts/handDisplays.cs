@@ -29,6 +29,7 @@ public class handDisplays : MonoBehaviour {
         GameObject[] detections;
         detections = GameObject.FindGameObjectsWithTag("bodyPos");
         Quaternion r = this.transform.rotation;
+        //Debug.Log(detections.Length);
         //Debug.Log(r.z);
         if(hitRight == true)
         {
@@ -48,7 +49,7 @@ public class handDisplays : MonoBehaviour {
         }
 
         this.transform.rotation = r;
-        if (detections.Length < 500)
+        if (detections.Length < 100)
         {
             if(ctime == 0)
             {
