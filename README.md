@@ -15,10 +15,13 @@ This collaborative action will begin to form when two or more people begin to wo
 ## Assessment Dates
 - [x] Project Ideas and Inspirations Presentation - 28 Feb 18: **5%**
 - [x] Proposal Presentation/Demonstration & Report - 14 Mar 18/ 26 Mar 18: **15%**
-- [] Prototype/Interactive Sketch or Mock-up - 23 Apr 18/ 30 Apr 18: **20%**
-- [] Project Summary Webpage - 16 May 18: **Pass/Fail**
-- [] Exhibit Finished Product - 30 May 18: **25%**
+- [x] Prototype/Interactive Sketch or Mock-up - 23 Apr 18/ 30 Apr 18: **20%**
+- [x] Project Summary Webpage - 16 May 18: **Pass/Fail**
+- [x] Exhibit Finished Product - 30 May 18: **25%**
 
+## Video Demonstration
+A kickstarter video for the project can be found at
+https://www.youtube.com/watch?v=1tP6ootmlGE
 
 ## Combinaction Team Members
 - Harrison Lucas
